@@ -27,6 +27,7 @@ if (!rootHtml.includes("1997–2097 — Public Field Note")) {
   throw new Error("The production server did not return the field note site.");
 }
 await writeFile(path.join(outputDir, "index.html"), rootHtml);
+await writeFile(path.join(outputDir, ".nojekyll"), "");
 
 const files = await readdir(path.join(process.cwd(), "content", "notes"));
 const publishedSlugs = [];
