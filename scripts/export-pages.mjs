@@ -51,6 +51,7 @@ for (const slug of publishedSlugs) {
 // under /1997-2097-diary on GitHub Pages. Mirror them into that URL prefix.
 const prefixedAssetDir = path.join(outputDir, basePath.replace(/^\//, ""));
 await mkdir(prefixedAssetDir, { recursive: true });
+await cp(path.join(prefixedAssetDir, "_next"), path.join(outputDir, "_next"), { recursive: true, force: true });
 for (const filename of ["favicon.svg", "night-field.png", "og.png", "file.svg", "globe.svg", "window.svg"]) {
   await cp(path.join(outputDir, filename), path.join(prefixedAssetDir, filename), { force: true });
 }
