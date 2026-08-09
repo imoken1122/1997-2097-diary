@@ -61,7 +61,7 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="1997–2097 home">
           <span className="wordmark-mark" aria-hidden="true">∿</span>
-          <span>1997–2097</span>
+          <span>FIELD NOTE</span>
         </a>
         <div className="header-meta">
           <span>PUBLIC FIELD NOTE</span>
@@ -83,9 +83,9 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
       </section>
 
       <section className="about" id="about" aria-labelledby="about-title">
-        <div className="about-mark">ABOUT<br />1997–2097</div>
+        <div className="about-mark">ABOUT</div>
         <div className="about-text">
-          <h2 className="about-lede" id="about-title">1997–2097</h2>
+          <h2 className="about-lede" id="about-title">この記録について</h2>
           <div className="about-copy">
             {aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
@@ -142,7 +142,7 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
       </section>
 
       <footer className="site-footer">
-        <span>1997–2097 / PUBLIC FIELD NOTE</span>
+        <span>PUBLIC FIELD NOTE</span>
         <a href="#top">↑ top</a>
       </footer>
     </main>
