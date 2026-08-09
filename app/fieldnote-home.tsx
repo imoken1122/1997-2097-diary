@@ -44,15 +44,10 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
           <span className="header-dot" aria-hidden="true" />
           <span>VOL. 01 / 2026—</span>
         </div>
-        <a className="about-link" href="#about">about <span aria-hidden="true">↗</span></a>
       </header>
 
       <section className="intro" id="top">
-        <div className="intro-kicker">A record of looking closely</div>
-        <h1>
-          まだ名前のないものを、<br />
-          <em>時間の中に置いておく。</em>
-        </h1>
+        <h1>1997–2097</h1>
         <div className="intro-bottom">
           <div className="intro-coordinate" aria-label="current coordinate">
             <span>NOW</span>
@@ -80,7 +75,6 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
         </div>
         <div className="axis-caption">
           <span className="axis-caption-index">0{axes.indexOf(activeAxis) + 1}</span>
-          <p>{axisLabels[activeAxis]}。記録は、ひとつの入口から始めてもいい。</p>
           <span className="axis-caption-line" aria-hidden="true" />
         </div>
       </section>
@@ -111,19 +105,8 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
         </div>
       </section>
 
-      <section className="about" id="about">
-        <div className="about-mark" aria-hidden="true">1997<br />—<br />2097</div>
-        <div>
-          <div className="section-label">ABOUT THIS ARCHIVE</div>
-          <p className="about-lede">これは、完成した自分を見せる場所ではなく、変わっていく途中を残す場所。</p>
-          <p className="about-copy">一日ひとつでも、一年にひとつでも。観察したもの、つくったもの、考えたことを、時間の流れに戻しておく。Gitの履歴が、昨日とは違う自分を律儀に覚えている。</p>
-        </div>
-        <div className="about-foot">更新は不定期<br />次の記録を待つ</div>
-      </section>
-
       <footer className="site-footer">
         <span>1997–2097 / PUBLIC FIELD NOTE</span>
-        <span>made to be continued</span>
         <a href="#top">↑ top</a>
       </footer>
     </main>
