@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { loadNote } from "@/lib/notes";
+import { loadNote, loadNotes } from "@/lib/notes";
+
+export function generateStaticParams() {
+  return loadNotes().map((note) => ({ slug: note.slug }));
+}
 
 export default async function NotePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

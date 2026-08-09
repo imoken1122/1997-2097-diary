@@ -26,6 +26,8 @@ const axisLabels: Record<Axis, string> = {
   OBJECT: "対象から読む",
 };
 
+const siteBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
   const [activeAxis, setActiveAxis] = useState<Axis>("TIME");
   const visibleNotes = useMemo(() => notes, [notes]);
@@ -99,7 +101,7 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
               <div className={`note-thumb ${note.tone}`} aria-hidden="true"><span>{note.index}</span></div>
               <div className="note-body">
                 <div className="note-tags">{note.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <h3><a href={`/notes/${note.slug}`}>{note.title}</a></h3>
+                <h3><a href={`${siteBasePath}/notes/${note.slug}/`}>{note.title}</a></h3>
                 <p>{note.excerpt}</p>
               </div>
               <div className="note-place"><span>{note.place}</span><span>{note.object}</span></div>
