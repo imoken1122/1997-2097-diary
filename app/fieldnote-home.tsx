@@ -28,6 +28,30 @@ const axisLabels: Record<Axis, string> = {
 
 const siteBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+const aboutParagraphs = [
+  "1997年に生まれた。2097年は、その100年後。",
+  "別に100歳まで生きるつもりで付けたわけではない。ただ、自分の人生を100年くらいの時間軸に置いてみたら、少し見え方が変わる気がした。",
+  "自分が生きているこの時代は、いったい何なんだろうと思う。",
+  "インターネットが当たり前になって、AIが急速に発展して、社会も街もずいぶん変わっていく。一方で、何百年も前の建物がまだ残っていたり、夏になればセミが鳴いていたりする。",
+  "その中に、たまたま自分もいる。",
+  "だったら、この時代に自分は何を見るんだろう。何を面白いと思うんだろう。何を調べて、何を試すんだろう。",
+  "そういうものを残しておこうと思った。",
+  "AIのことを書くかもしれない。生き物のことかもしれない。街を歩いていて見つけたものかもしれないし、本を読んで考えたことかもしれない。",
+  "たぶん、かなりバラバラになる。",
+  "でも、それでいい気がしている。",
+  "最初から意味のあるものだけを選ぼうとすると、結局何も残らない。今はどうでもよく見えることが、何年か後に別の何かとつながるかもしれないし、結局何にもならないかもしれない。",
+  "それは後にならないと分からない。",
+  "ただ、思いついたことだけを並べたいわけでもない。",
+  "何かが気になったら、それまでに誰が同じようなことを考えてきたのかを調べたい。実際に見られるものなら見に行きたい。試せるものなら試してみたい。",
+  "そうやって一つずつ辿っていけば、あとから何かの線が見えてくるかもしれない。",
+  "人生をきれいな物語にすることには、あまり興味がない。",
+  "そのとき何を見て、何を考えて、そこからどこへ行ったのか。",
+  "そのシークエンスだけ残っていればいい。",
+  "2097年に何があるのかは知らない。",
+  "自分がそこにいるかどうかも分からない。",
+  "とりあえず1997から始まった時間の続きを、ここに置いていく。",
+];
+
 export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
   const [activeAxis, setActiveAxis] = useState<Axis>("TIME");
   const visibleNotes = useMemo(() => notes, [notes]);
@@ -44,6 +68,7 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
           <span className="header-dot" aria-hidden="true" />
           <span>VOL. 01 / 2026—</span>
         </div>
+        <a className="about-link" href="#about">about ↘</a>
       </header>
 
       <section className="intro" id="top">
@@ -55,6 +80,17 @@ export default function FieldnoteHome({ notes }: { notes: NoteSummary[] }) {
             <span>35°41′N / 139°41′E</span>
           </div>
         </div>
+      </section>
+
+      <section className="about" id="about" aria-labelledby="about-title">
+        <div className="about-mark">ABOUT<br />1997–2097</div>
+        <div className="about-text">
+          <h2 className="about-lede" id="about-title">1997–2097</h2>
+          <div className="about-copy">
+            {aboutParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        </div>
+        <div className="about-foot">PUBLIC FIELD NOTE<br />TIME / OBSERVATION / SEQUENCE</div>
       </section>
 
       <section className="axis-panel" aria-labelledby="axis-title">

@@ -102,8 +102,10 @@ button { color: inherit; font: inherit; }
 
 .about { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 40px; padding: 94px clamp(24px, 11vw, 168px); background: rgb(17 25 20 / .64); backdrop-filter: blur(2px); }
 .about-mark { color: #87935e; font: italic 24px/1.06 var(--serif); letter-spacing: -.08em; }
+.about-text { min-width: 0; }
 .about-lede { max-width: 610px; margin: 22px 0 22px; font: 400 clamp(25px, 3vw, 42px)/1.23 var(--serif); letter-spacing: -.05em; }
 .about-copy { max-width: 520px; margin: 0; font-size: 12px; line-height: 1.9; color: var(--muted); }
+.about-copy p { margin: 0 0 17px; }
 .about-foot { align-self: end; justify-self: end; text-align: right; color: var(--muted); font: 10px/1.7 var(--mono); }
 .site-footer { display: flex; justify-content: space-between; padding: 21px clamp(24px, 5.8vw, 88px); font: 9px var(--mono); letter-spacing: .09em; color: var(--muted); }
 .site-footer a { color: var(--ink); }
