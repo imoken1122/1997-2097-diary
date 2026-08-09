@@ -1,7 +1,5 @@
 # 1997–2097 — Public Field Note
 
-技術、観察、写真、思想、昆虫、都市、AI、実験をひとつの時系列として残す公開フィールドノート。
-
 ## Local development
 
 ```bash
