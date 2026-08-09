@@ -22,8 +22,8 @@ test("server-renders the public field note", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="ja">/i);
   assert.match(html, /<title>1997–2097 — Public Field Note<\/title>/i);
-  assert.match(html, /まだ名前のないものを、/);
-  assert.match(html, /借景と時間/);
+  assert.match(html, /NO RECORDS/);
+  assert.doesNotMatch(html, /借景と時間|アリは世界をどう切っているか|商品属性と世界の離散化/);
   assert.match(html, /記録の連なり/);
   assert.match(html, /TIME/);
   assert.match(html, /PLACE/);
@@ -38,7 +38,8 @@ test("starter preview infrastructure is removed", async () => {
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
 
-  assert.match(page, /fieldnote-shell/);
+  assert.match(page, /FieldnoteHome/);
+  assert.match(page, /loadNotes/);
   assert.match(layout, /Public Field Note/);
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
