@@ -1,12 +1,12 @@
 ---
 title: "差異・間・モデル"
-date: "YYYY-MM-DD"
+date: "2026-08-09"
 place: ""
 object: ""
 tags: ["intelligence", "model", "relation", "emergence"]
 excerpt: "差異とそのあいだに立ち上がる関係から、知能やモデルが出現する条件を考える。"
 tone: "tone-night"
-published: false
+published: true
 ---
 
 # 差異・間・モデル
