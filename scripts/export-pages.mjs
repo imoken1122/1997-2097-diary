@@ -3,10 +3,21 @@ import path from "node:path";
 
 const origin = process.env.EXPORT_ORIGIN ?? "http://127.0.0.1:4173";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/1997-2097-diary";
+const serverBasePath = process.env.EXPORT_SERVER_BASE_PATH ?? (process.env.GITHUB_PAGES === "true" ? basePath : "");
 const outputDir = path.resolve(process.env.PAGES_OUTPUT ?? "dist/client");
 
+function addPublicBasePath(html) {
+  if (!basePath || serverBasePath === basePath) return html;
+  const publicPath = basePath.replace(/^\//, "");
+  const escapedPublicPath = publicPath.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+  return html.replace(
+    new RegExp(`(["'(])/(?!/|#|${escapedPublicPath}(?:/|["')]))`, "g"),
+    `$1${basePath}/`,
+  );
+}
+
 async function fetchPage(route) {
-  const url = `${origin}${basePath}${route}`;
+  const url = `${origin}${serverBasePath}${route}`;
   let lastError;
   for (let attempt = 0; attempt < 30; attempt += 1) {
     try {
@@ -22,7 +33,7 @@ async function fetchPage(route) {
   throw lastError;
 }
 
-const rootHtml = await fetchPage("/");
+const rootHtml = addPublicBasePath(await fetchPage("/"));
 if (!rootHtml.includes("1997–2097 — Public Field Note")) {
   throw new Error("The production server did not return the field note site.");
 }
@@ -41,7 +52,7 @@ for (const filename of files) {
 }
 
 for (const slug of publishedSlugs) {
-  const html = await fetchPage(`/notes/${slug}/`);
+  const html = addPublicBasePath(await fetchPage(`/notes/${slug}/`));
   const pageDir = path.join(outputDir, "notes", slug);
   await mkdir(pageDir, { recursive: true });
   await writeFile(path.join(pageDir, "index.html"), html);
@@ -51,7 +62,7 @@ for (const slug of publishedSlugs) {
 // under /1997-2097-diary on GitHub Pages. Mirror them into that URL prefix.
 const prefixedAssetDir = path.join(outputDir, basePath.replace(/^\//, ""));
 await mkdir(prefixedAssetDir, { recursive: true });
-await cp(path.join(prefixedAssetDir, "_next"), path.join(outputDir, "_next"), { recursive: true, force: true });
+await cp(path.join(outputDir, "_next"), path.join(prefixedAssetDir, "_next"), { recursive: true, force: true });
 for (const filename of ["favicon.svg", "night-field.png", "og.png", "file.svg", "globe.svg", "window.svg"]) {
   await cp(path.join(outputDir, filename), path.join(prefixedAssetDir, filename), { force: true });
 }

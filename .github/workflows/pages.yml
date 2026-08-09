@@ -18,7 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAGES: "true"
+      # Build and prerender at the site root. export-pages.mjs applies the
+      # project-site prefix when writing the GitHub Pages artifact.
+      GITHUB_PAGES: "false"
       NEXT_PUBLIC_BASE_PATH: /1997-2097-diary
     steps:
       - name: Checkout

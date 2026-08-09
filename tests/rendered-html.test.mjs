@@ -22,7 +22,8 @@ test("server-renders the public field note", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="ja">/i);
   assert.match(html, /<title>1997–2097 — Public Field Note<\/title>/i);
-  assert.match(html, /NO RECORDS/);
+  assert.match(html, /差異・間・モデル/);
+  assert.match(html, /01<!-- --> records|01 records/);
   assert.doesNotMatch(html, /借景と時間|アリは世界をどう切っているか|商品属性と世界の離散化/);
   assert.match(html, /記録の連なり/);
   assert.match(html, /TIME/);

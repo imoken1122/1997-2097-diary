@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { loadNote, loadNotes } from "@/lib/notes";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return loadNotes().map((note) => ({ slug: note.slug }));
 }
