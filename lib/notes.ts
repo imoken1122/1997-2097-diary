@@ -4,6 +4,8 @@ import type { NoteSummary } from "@/app/fieldnote-home";
 
 const notesDirectory = path.join(process.cwd(), "content", "notes");
 
+export type Note = NoteSummary & { body: string };
+
 export function loadNotes(): NoteSummary[] {
   if (!fs.existsSync(notesDirectory)) return [];
 
@@ -16,7 +18,12 @@ export function loadNotes(): NoteSummary[] {
     .map((note, index) => ({ ...note, index: String(index + 1).padStart(2, "0") }));
 }
 
-function parseNote(filename: string): NoteSummary | null {
+export function loadNote(slug: string): Note | null {
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
+  return parseNote(`${slug}.md`);
+}
+
+function parseNote(filename: string): Note | null {
   const source = fs.readFileSync(path.join(notesDirectory, filename), "utf8");
   const match = source.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
   if (!match) return null;
@@ -39,6 +46,7 @@ function parseNote(filename: string): NoteSummary | null {
     object: fields.object || "",
     tone: fields.tone || "tone-night",
     index: "",
+    body,
   };
 }
 
